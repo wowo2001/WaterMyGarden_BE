@@ -1,0 +1,6 @@
+@WaterMyGarden_HostAddress = http://localhost:5051
+
+GET {{WaterMyGarden_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

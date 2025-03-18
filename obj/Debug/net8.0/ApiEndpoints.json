@@ -1,0 +1,64 @@
+[
+  {
+    "ContainingType": "WaterMyGarden.Controllers.WeatherForecastController",
+    "Method": "GetWeather",
+    "RelativePath": "Weather/GetWeather",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "WaterMyGarden.Weather",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WaterMyGarden.Controllers.WeatherForecastController",
+    "Method": "RecordWatering",
+    "RelativePath": "Weather/RecordWatering",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "WaterMyGarden.RecordWateringRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WaterMyGarden.Controllers.WeatherForecastController",
+    "Method": "SendSNS",
+    "RelativePath": "Weather/SendSNS",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
