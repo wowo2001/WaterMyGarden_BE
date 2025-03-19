@@ -50,7 +50,8 @@ namespace WaterMyGarden.Services
         {
             string message = null;
             DateTime currentDate = DateTime.Now;
-            for (int i = 1; i <= 3; i++)
+            bool isRainOrWatering = false;
+            for (int i = 0; i <= 3; i++)
             {
                 string previousDay = currentDate.AddDays(-i).ToString("yyyy-MM-dd");
                 message = message + previousDay + Environment.NewLine;
@@ -61,9 +62,24 @@ namespace WaterMyGarden.Services
                     {
                         message = message + "weather: " + dayWeather.weather + Environment.NewLine;
                         message = message + "watering the garden: " + dayWeather.wateringGarden + Environment.NewLine;
+                        if (dayWeather.weather == "Rainy")
+                        {
+                            isRainOrWatering = true;
+                        }
+                        if (dayWeather.wateringGarden == true)
+                        {
+                            isRainOrWatering = true;
+                        }
                     }
                 
                 }
+            }
+            if (isRainOrWatering)
+            {
+                message = "You don't need to water your garden today" + Environment.NewLine + message;
+            }
+            else {
+                message = "You need to water your garden today" + Environment.NewLine + message;
             }
             return message;
 
