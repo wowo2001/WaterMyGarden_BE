@@ -25,25 +25,32 @@ namespace WaterMyGarden.Services
                 "iLmmKfz4PEVIsDx7lR0e54ZsS2LjvAkCrWOu2C+2",
                 Amazon.RegionEndpoint.APSoutheast2);
 
-            string phoneNumber = "+610479035870";
+            var phoneNumbers = new List<string>
+            {
+                "+610479035870",  // First phone number
+                "+610401382398"    // Second phone number
+             };
 
             string message = await buildSNSMessage();
 
             // Send the SMS
-            var request = new PublishRequest
+            foreach (var phoneNumber in phoneNumbers)
             {
-                PhoneNumber = phoneNumber,
-                Message = message
-            };
+                var request = new PublishRequest
+                {
+                    PhoneNumber = phoneNumber,
+                    Message = message
+                };
 
-            try
-            {
-                var response = await snsClient.PublishAsync(request);
-                Console.WriteLine($"Message sent! Message ID: {response.MessageId}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error sending message: {ex.Message}");
+                try
+                {
+                    var response = await snsClient.PublishAsync(request);
+                    Console.WriteLine($"Message sent! Message ID: {response.MessageId}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error sending message: {ex.Message}");
+                }
             }
         }
         private async Task<string> buildSNSMessage()

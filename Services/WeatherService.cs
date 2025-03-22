@@ -44,23 +44,26 @@ namespace WaterMyGarden.Services
 
             DateTime currentDate = DateTime.Now;
 
+            DateTime firstDayOfPreviousMonth = new DateTime(currentDate.Year, currentDate.Month, 1).AddMonths(-1);
+
             // First day of the current month
             DateTime firstDayOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
 
             // Last day of the current month
             DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
 
-            // Formatting the dates
+            // Formatting the datesformattedFirstDay = firstDayOfMonth.ToString("yyyy-MM-dd");
+            string formattedPreviousMonthFirstDay = firstDayOfPreviousMonth.ToString("yyyy-MM-dd");
             string formattedFirstDay = firstDayOfMonth.ToString("yyyy-MM-dd");
             string formattedLastDay = lastDayOfMonth.ToString("yyyy-MM-dd");
 
             var parameters = new Dictionary<string, string>
             {
-                { "latitude", "-33.8678" },
-                { "longitude", "151.2073" },
+                { "latitude", "-33.8116" },
+                { "longitude", "151.1054" },
                 { "daily", "rain_sum,showers_sum" },
                 { "timezone", "Australia/Sydney" },
-                { "start_date", formattedFirstDay },
+                { "start_date", formattedPreviousMonthFirstDay },
                 { "end_date", formattedLastDay }
             };
             var url = BuildUrlWithParams(baseUrl, parameters);
