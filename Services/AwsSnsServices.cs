@@ -32,24 +32,26 @@ namespace WaterMyGarden.Services
              };
 
             string message = await buildSNSMessage();
+            if (message.Contains("You need to water your garden today"))
+                {
+                // Send the SMS
+                foreach (var phoneNumber in phoneNumbers)
+                {
+                    var request = new PublishRequest
+                    {
+                        PhoneNumber = phoneNumber,
+                        Message = message
+                    };
 
-            // Send the SMS
-            foreach (var phoneNumber in phoneNumbers)
-            {
-                var request = new PublishRequest
-                {
-                    PhoneNumber = phoneNumber,
-                    Message = message
-                };
-
-                try
-                {
-                    var response = await snsClient.PublishAsync(request);
-                    Console.WriteLine($"Message sent! Message ID: {response.MessageId}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error sending message: {ex.Message}");
+                    try
+                    {
+                        var response = await snsClient.PublishAsync(request);
+                        Console.WriteLine($"Message sent! Message ID: {response.MessageId}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error sending message: {ex.Message}");
+                    }
                 }
             }
         }
