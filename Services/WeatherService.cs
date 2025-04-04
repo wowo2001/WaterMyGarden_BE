@@ -55,7 +55,7 @@ namespace WaterMyGarden.Services
             // Formatting the datesformattedFirstDay = firstDayOfMonth.ToString("yyyy-MM-dd");
             string formattedPreviousMonthFirstDay = firstDayOfPreviousMonth.ToString("yyyy-MM-dd");
             string formattedFirstDay = firstDayOfMonth.ToString("yyyy-MM-dd");
-            string formattedLastDay = lastDayOfMonth.ToString("yyyy-MM-dd");
+            string formattedLastDay = DateTime.Now.AddDays(5).ToString("yyyy-MM-dd");
 
             var parameters = new Dictionary<string, string>
             {
